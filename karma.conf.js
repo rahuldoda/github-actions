@@ -37,8 +37,16 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
-    singleRun: false,
-    restartOnFileChange: true
+    browsers: ['ChromeHeadlessCI'],
+     customLaunchers: {
+      ChromeHeadlessCI: {
+        base: 'ChromeHeadless',
+        // --no-sandbox is critical for Chrome on Docker/Linux CI environments
+        // --disable-gpu is often recommended for headless mode for stability
+        flags: ['--no-sandbox', '--disable-gpu']
+      }
+    },
+    singleRun: true,
+    restartOnFileChange: false
   });
 };
