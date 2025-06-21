@@ -4,9 +4,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Tab2Page } from './tab2.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
-
 import { Tab2PageRoutingModule } from './tab2-routing.module';
-import { ThankYouModalComponent } from '../thank-you-modal/thank-you-modal.component';
+
 
 @NgModule({
   imports: [

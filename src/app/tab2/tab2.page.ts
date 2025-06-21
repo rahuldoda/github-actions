@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { VideoPlayer } from '@awesome-cordova-plugins/video-player/ngx';
 import { ModalController, ToastController } from '@ionic/angular';
-import { ThankYouModalComponent } from '../thank-you-modal/thank-you-modal.component';
-
-
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
@@ -53,7 +50,7 @@ export class Tab2Page {
 
       // Present the thank you modal
       const modal = await this.modalController.create({
-        component: ThankYouModalComponent,
+        component: '',
         componentProps: {
           name: this.registrationForm.get('fullName')?.value // Pass the name to the modal
         },
