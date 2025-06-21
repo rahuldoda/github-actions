@@ -56,6 +56,7 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
     }
   `],
   imports: [IonicModule, FormsModule, ReactiveFormsModule, CommonModule, BrowserModule, AppRoutingModule],
+  standalone: false,
 })
 export class ThankYouModalComponent {
   @Input() name: string = ''; // To display the user's name

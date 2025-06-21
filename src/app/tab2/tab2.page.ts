@@ -11,7 +11,7 @@ import { ThankYouModalComponent } from '../thank-you-modal/thank-you-modal.compo
   styleUrls: ['tab2.page.scss'],
   standalone: false,
 })
-export class Tab2Page implements OnInit {
+export class Tab2Page {
   registrationForm: FormGroup;
   currentYear: number;
 
