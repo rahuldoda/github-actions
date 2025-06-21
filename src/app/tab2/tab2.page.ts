@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { VideoPlayer } from '@awesome-cordova-plugins/video-player/ngx';
 import { ModalController, ToastController } from '@ionic/angular';
@@ -11,7 +11,7 @@ import { ThankYouModalComponent } from '../thank-you-modal/thank-you-modal.compo
   styleUrls: ['tab2.page.scss'],
   standalone: false,
 })
-export class Tab2Page {
+export class Tab2Page implements OnInit {
   registrationForm: FormGroup;
   currentYear: number;
 
@@ -39,11 +39,7 @@ export class Tab2Page {
     });
   }
 
-  ngOnInit() {
-   
-  }
-
-  // Getter for easy access to form controls in the template
+    // Getter for easy access to form controls in the template
   get f() {
     return this.registrationForm.controls;
   }
