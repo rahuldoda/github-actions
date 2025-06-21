@@ -3,7 +3,6 @@ name: My First GitHub Action
 on: [push] # This workflow runs on every push to the repository
 
 jobs:
- # Job 1: Linting
  lint:
     runs-on: ubuntu-latest # Or windows-latest, or macOS-latest, depending on your preference
 
@@ -27,7 +26,7 @@ jobs:
         # run: ng lint your-project-name
         # Or if it's a specific configuration:
         # run: ng lint --configuration production
- # Job 2: build
+  
   build: # This is the ID of our job
     runs-on: ubuntu-latest # The type of runner that the job will run on (Linux in this case)
 
