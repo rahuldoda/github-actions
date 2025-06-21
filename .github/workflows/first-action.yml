@@ -1,0 +1,23 @@
+name: My First GitHub Action
+
+on: [push] # This workflow runs on every push to the repository
+
+jobs:
+  build: # This is the ID of our job
+    runs-on: ubuntu-latest # The type of runner that the job will run on (Linux in this case)
+
+    steps: # Sequence of tasks that will be executed
+      - name: Checkout repository
+        uses: actions/checkout@v4 # This action checks out your repository under $GITHUB_WORKSPACE, so your workflow can access it.
+
+      - name: Run a simple command
+        run: echo "Hello from GitHub Actions! This workflow was triggered by a push."
+
+      - name: List files (executed on Ubuntu runner)
+        run: ls -la # This command will run on the Ubuntu runner, not your local Windows CMD
+
+      # If you created hello.py, you can add this step:
+      - name: Run Python script (Optional)
+        if: success() # Only run if previous steps succeeded
+        run: python hello.py
+        working-directory: . # Specify the directory where the script is
