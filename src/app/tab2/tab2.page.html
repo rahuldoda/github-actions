@@ -1,0 +1,173 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Guggu's Media </ion-title>
+   <ion-avatar>  
+      <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+    </ion-avatar>
+  </ion-toolbar>
+</ion-header>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      My Ionic Form
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>
+      Stylish Record Form
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="form-container">
+    <ion-card class="animated-card">
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">Personal Information</ion-card-title>
+        <ion-card-subtitle class="ion-text-center">Tell us about yourself</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+
+          <ion-item class="ion-margin-bottom animated-item">
+            <ion-input
+              label="Full Name"
+              labelPlacement="floating"
+              formControlName="fullName"
+              placeholder="e.g., Jane Doe"
+              type="text"
+              clear-input="true"
+            ></ion-input>
+          </ion-item>
+          <ion-note color="danger" *ngIf="hasError('fullName', 'required')">
+            Full Name is required.
+          </ion-note>
+
+          <ion-item class="ion-margin-top ion-margin-bottom animated-item">
+            <ion-input
+              label="Email Address"
+              labelPlacement="floating"
+              formControlName="email"
+              placeholder="e.g., jane.doe@example.com"
+              type="email"
+              clear-input="true"
+            ></ion-input>
+          </ion-item>
+          <ion-note color="danger" *ngIf="hasError('email', 'required')">
+            Email is required.
+          </ion-note>
+          <ion-note color="danger" *ngIf="hasError('email', 'email')">
+            Please enter a valid email address.
+          </ion-note>
+
+          <ion-item class="ion-margin-top ion-margin-bottom animated-item">
+            <ion-input
+              label="Age"
+              labelPlacement="floating"
+              formControlName="age"
+              placeholder="e.g., 25"
+              type="number"
+              clear-input="true"
+            ></ion-input>
+          </ion-item>
+          <ion-note color="danger" *ngIf="hasError('age', 'required')">
+            Age is required.
+          </ion-note>
+          <ion-note color="danger" *ngIf="hasError('age', 'min') || hasError('age', 'max')">
+            Age must be between 18 and 99.
+          </ion-note>
+
+          <ion-item class="ion-margin-top ion-margin-bottom animated-item">
+            <ion-select
+              label="Gender"
+              labelPlacement="floating"
+              formControlName="gender"
+              placeholder="Select One"
+            >
+              <ion-select-option value="male">Male</ion-select-option>
+              <ion-select-option value="female">Female</ion-select-option>
+              <ion-select-option value="other">Other</ion-select-option>
+              <ion-select-option value="prefer_not_say">Prefer not to say</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-note color="danger" *ngIf="hasError('gender', 'required')">
+            Gender is required.
+          </ion-note>
+
+          <ion-item class="ion-margin-top ion-margin-bottom animated-item">
+            <ion-input label="Date of Birth" labelPlacement="floating" placeholder="Select your DOB" id="dob-input"></ion-input>
+            <ion-popover trigger="dob-input" triggerAction="click" [keepContentsMounted]="true" >
+              <ng-template>
+                <ion-datetime
+                  presentation="date"
+                  formControlName="dob"
+                  [max]="(currentYear - 18) + '-12-31'"
+                  [min]="(currentYear - 99) + '-01-01'"
+                ></ion-datetime>
+              </ng-template>
+            </ion-popover>
+          </ion-item>
+          <ion-note color="danger" *ngIf="hasError('dob', 'required')">
+            Date of Birth is required.
+          </ion-note>
+
+          <ion-item class="ion-margin-top animated-item">
+            <ion-toggle formControlName="receiveNotifications">
+              Receive Notifications
+            </ion-toggle>
+          </ion-item>
+
+          <ion-item class="ion-margin-top animated-item">
+            <ion-label>Satisfaction Rating:</ion-label>
+            <ion-range
+              formControlName="satisfactionRating"
+              min="0"
+              max="100"
+              step="1"
+              color="secondary"
+            >
+              <ion-icon slot="start" name="sad-outline"></ion-icon>
+              <ion-icon slot="end" name="happy-outline"></ion-icon>
+            </ion-range>
+          </ion-item>
+          <ion-note class="ion-padding-start" color="medium">
+            Current rating: {{ registrationForm.get('satisfactionRating')?.value }}
+          </ion-note>
+
+          <ion-item class="ion-margin-top animated-item">
+            <ion-textarea
+              label="Comments"
+              labelPlacement="floating"
+              formControlName="comments"
+              placeholder="Any additional comments?"
+              rows="3"
+            ></ion-textarea>
+          </ion-item>
+
+          <ion-item class="ion-margin-top animated-item">
+            <ion-checkbox formControlName="agreeTerms">
+              I agree to the <a href="#" target="_blank">Terms and Conditions</a>.
+            </ion-checkbox>
+          </ion-item>
+          <ion-note color="danger" *ngIf="hasError('agreeTerms', 'requiredTrue')">
+            You must agree to the terms.
+          </ion-note>
+
+          <ion-button
+            expand="block"
+            type="submit"
+            class="ion-margin-top submit-button"
+            [disabled]="registrationForm.invalid"
+          >
+            Submit Registration
+            <ion-icon slot="end" name="send"></ion-icon>
+          </ion-button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
